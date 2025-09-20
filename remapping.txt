@@ -1,0 +1,2 @@
+openzeppelin-contracts = lib/openzeppelin-contracts
+@openzeppelin/contracts/ = /node_modules/@openzeppelin/contracts/ 
