@@ -8,6 +8,9 @@ import "src/Staking.sol";
 contract StakingContractTest is Test {
     StakingContract stakingContract;
 
+    // Allow the contract to receive ETH
+    receive() external payable {}
+
     function setUp() public {
         stakingContract = new StakingContract(address(this));
     }
@@ -30,8 +33,9 @@ contract StakingContractTest is Test {
         assert(stakingContract.balanceOf(address(this)) == 100);
     }
 
-    function testFailUnstake() public {
+    function test_RevertWhen_UnstakeMoreThanBalance() public {
         stakingContract.stake{value: 200}();
+        vm.expectRevert();
         stakingContract.unstake(300);
     }
 }

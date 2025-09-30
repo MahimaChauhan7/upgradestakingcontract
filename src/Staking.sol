@@ -47,7 +47,6 @@ contract StakingContract {
     }
 
     function claimRewards() public {
-        uint256 currentReward = unclaimedReward[msg.sender];
         uint256 updateTime = lastTimeupdate[msg.sender];
         uint256 newReward = (block.timestamp - updateTime) * balanceOf(msg.sender);
         unclaimedReward[msg.sender] += newReward;

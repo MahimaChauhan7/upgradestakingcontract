@@ -11,12 +11,13 @@ contract OrcaCinTest is Test {
         orcaCoin = new OrcaCoin(address(this));
     }
 
-    function testInitialSupply() public {
+    function testInitialSupply() public view {
         assert(orcaCoin.totalSupply() == 0);
     }
 
-    function testFailmint() public {
+    function test_RevertWhen_NonOwnerMints() public {
         vm.startPrank(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266);
+        vm.expectRevert();
         orcaCoin.mint(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266, 10);
         vm.stopPrank();
     }
